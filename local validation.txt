@@ -1,0 +1,24 @@
+Port forwarding::
+kubectl port-forward svc/stock-api-service 5000:5000
+
+
+This did the following:
+| Action | Result | 
+| Forwarded local port 5000 | To the service’s target port 5000 | 
+| Bound to localhost:5000 | So you could hit the API from your machine | 
+| Bypassed ELB/DNS | Let you test the app directly via Kubernetes | 
+
+
+
+🧪 Example Curl During Port Forwarding
+curl http://localhost:5000/stock/IBM
+
+
+This will hit the Flask app inside the cluster, even if we don't have ELB handy.
+🧠 When to Use Port Forwarding
+- 🔹 During early testing or debugging
+- 🔹 When you want to bypass external networking
+- 🔹 When working in a private cluster or restricted VPC
+- 🔹 When validating pod-level behavior before exposing it
+
+
